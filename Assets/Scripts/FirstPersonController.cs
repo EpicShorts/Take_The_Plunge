@@ -29,15 +29,12 @@ public class FirstPersonController : MonoBehaviour
     // if sprint triggered is true, then multiply by sprint multiplayer, if not then multiple by 1 (dont change)
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplayer : 1);
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false; 
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleMovement();
