@@ -26,10 +26,15 @@ public class InputHandler : MonoBehaviour
     public bool JumpTriggered { get; private set; }
     public bool SprintTriggered { get; private set; }
 
-    // Custom Sneak
+    // Dive
     [SerializeField] private string sneak = "Sneak";
     private InputAction sneakAction;
     public bool SneakTriggered { get; private set; }
+
+    // Interact
+    [SerializeField] private string interact = "Interact";
+    private InputAction interactAction;
+    public bool InteractTriggered { get; private set; }
 
     private void Awake()
     {
@@ -40,8 +45,9 @@ public class InputHandler : MonoBehaviour
         jumpAction = mapReference.FindAction(jump);
         sprintAction = mapReference.FindAction(sprint);
 
-        // Sneak
+        // Extras
         sneakAction = mapReference.FindAction(sneak);
+        interactAction = mapReference.FindAction(interact);
 
         SubscribeActionValuesToInputEvents();
     }
@@ -60,9 +66,12 @@ public class InputHandler : MonoBehaviour
         sprintAction.performed += inputInfo => SprintTriggered = true;
         sprintAction.canceled += inputInfo => SprintTriggered = false;
 
-        // Sneak
+        // Extras
         sneakAction.performed += inputInfo => SneakTriggered = true;
         sneakAction.canceled += inputInfo => SneakTriggered = false;
+
+        interactAction.performed += inputInfo => InteractTriggered = true;
+        interactAction.canceled += inputInfo => InteractTriggered = false;
     }
 
     private void OnEnable()
