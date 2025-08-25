@@ -1,55 +1,81 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class PickupableObject : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private InputHandler playerInputHandler;
     [SerializeField] private Transform rightHandLocation;
+    [SerializeField] private ObjectHandling objectHandling;
 
     [Header("Custom")]
     [Tooltip("The higher then the object feels heavier")] [SerializeField] private float heavyFeeling = 0.5f;
+    [SerializeField] private float throwForce = 10f;
 
     private bool followingRightHand = false;
 
-    private Vector3 velocity;
+    private bool canDrop = false;
+    private bool canPickup = true;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Vector3 smoothDampVelocity;
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (followingRightHand)
         {
-            //transform.position = rightHandLocation.position;
-            //transform.rotation = rightHandLocation.rotation;
+            // move towards right hand location
+            transform.position = Vector3.SmoothDamp(transform.position, rightHandLocation.position, ref smoothDampVelocity, heavyFeeling);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rightHandLocation.rotation, heavyFeeling);
 
-            //transform.position = Vector3.MoveTowards(transform.position, rightHandLocation.position, 1*Time.deltaTime);
-            transform.position = Vector3.SmoothDamp(transform.position, rightHandLocation.position, ref velocity, heavyFeeling);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rightHandLocation.rotation, 1f);
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("RightHand") && !followingRightHand)
-        {
-            //Debug.Log("[PickupableObject] Right Hand Colliding");
-            if (playerInputHandler.InteractTriggered)
+            // if player drops the cube
+            if(playerInputHandler.InteractTriggered && canDrop)
             {
-                Debug.Log("[PickupableObject] Picked up");
-                followingRightHand = true;
+                followingRightHand = false;
+                rb.useGravity = true;
+                objectHandling.IsRightHandTaken = false;
+                canPickup = false;
+                StartCoroutine(pickupDelay());
+
+                // throw the object
+                rb.AddForce(transform.forward * throwForce, ForceMode.Impulse);
+                Debug.Log("[PickupableObject]" + gameObject.name + " has been dropped");
             }
         }
-        else
-        {
-            //Debug.Log("[PickupableObject] Unknown object: "+other.name);
-        }
+    }
+    // make sure only one object can be placed in the right hand
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("RightHand") 
+                && !followingRightHand 
+                && playerInputHandler.InteractTriggered 
+                && !objectHandling.IsRightHandTaken
+                && canPickup) {
+            // if right hand, and not currently holding it, and not taken, and user presses e
+            Debug.Log("[PickupableObject]"+gameObject.name+" has been picked up");
+            followingRightHand = true;
+            canDrop = false;
+            rb.useGravity = false;
+            objectHandling.IsRightHandTaken = true;
+            canPickup = false;
+            StartCoroutine(dropDelay());
+        } 
+    }
 
-            
+    IEnumerator dropDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        canDrop = true;
+    }
+
+    IEnumerator pickupDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        canPickup = true;
     }
 }
