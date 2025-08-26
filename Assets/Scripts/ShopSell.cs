@@ -17,19 +17,22 @@ public class ShopSell : MonoBehaviour
         
     }
 
-    public void AddToBalence(int balence)
+    public void AddToBalence(int value)
     {
-        Shop_Biscuit_Balence += balence;
-        Debug.Log("[ShopSell] "+balence+" has been added, new total: "+Shop_Biscuit_Balence);
+        Shop_Biscuit_Balence += value;
+        Debug.Log("[ShopSell] "+ value + " has been added, new total: "+Shop_Biscuit_Balence);
     }
-    public bool RemoveFromBalence(int balence)
+    public bool RemoveFromBalence(int cost)
     {
-        if (Shop_Biscuit_Balence - balence > 0)
+        if (Shop_Biscuit_Balence - cost >= 0)
         {
-            Shop_Biscuit_Balence -= balence;
+            Shop_Biscuit_Balence -= cost;
             return true;
         }
-        Debug.Log("[ShopSell] Not enough to Buy");
-        return false;
+        else
+        {
+            Debug.Log("[ShopSell] Not enough to Buy, Balence: " + Shop_Biscuit_Balence + " Item cost: " + cost);
+            return false;
+        }
     }
 }

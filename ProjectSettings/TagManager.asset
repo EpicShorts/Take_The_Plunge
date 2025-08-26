@@ -7,6 +7,9 @@ TagManager:
   - Object
   - RightHand
   - ShopSell
+  - BasicFins
+  - BasicWeights
+  - BasicOxygenTank
   layers:
   - Default
   - TransparentFX
