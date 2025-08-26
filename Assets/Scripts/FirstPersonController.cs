@@ -10,10 +10,6 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float jumpForce = 5.0f;
     [SerializeField] private float gravityMultiplier = 1.0f;
 
-    [Header("Game Parameters")]
-    [SerializeField] private float diveForce = 0.05f;
-    [SerializeField] private float diveSpeed = 5f;
-
     [Header("Look Parameters")]
     [SerializeField] private float mouseSensitivity = 0.1f;
     [SerializeField] private float upDownLookRange = 80.0f;
@@ -22,6 +18,13 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private InputHandler playerInputHandler;
+
+    [Header("Game Parameters")]
+    [SerializeField] private float diveForce = 0.05f;
+    [SerializeField] private float diveSpeed = 5f;
+    [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float surfaceSpeedMultiplyer = 1f;
+    [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float underWaterSpeedMultiplyer = 1f;
+    [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float diveSpeedMultiplyer = 1f;
 
     private Vector3 currentMovement;
     private float verticalRotation;
@@ -72,7 +75,7 @@ public class FirstPersonController : MonoBehaviour
         {
             if (playerInputHandler.SneakTriggered && currentMovement.y > -diveSpeed)
             {
-                currentMovement.y += -diveForce;
+                currentMovement.y += -diveForce * diveSpeedMultiplyer;
             }
             if (currentMovement.y < 10f)
             {
@@ -84,8 +87,17 @@ public class FirstPersonController : MonoBehaviour
     private void HandleMovement()
     {
         Vector3 worldDirection = CalculateWorldDirection();
-        currentMovement.x = worldDirection.x * CurrentSpeed;
-        currentMovement.z = worldDirection.z * CurrentSpeed;
+        if (transform.position.y >= 0)
+        {
+            currentMovement.x = worldDirection.x * (CurrentSpeed * surfaceSpeedMultiplyer);
+            currentMovement.z = worldDirection.z * (CurrentSpeed * surfaceSpeedMultiplyer);
+        }
+        // if below 0, aka in water
+        else
+        {
+            currentMovement.x = worldDirection.x * (CurrentSpeed * underWaterSpeedMultiplyer);
+            currentMovement.z = worldDirection.z * (CurrentSpeed * underWaterSpeedMultiplyer);
+        }
 
         HandleJumping();
         characterController.Move(currentMovement * Time.deltaTime);
