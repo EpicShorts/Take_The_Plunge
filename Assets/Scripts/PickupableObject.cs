@@ -10,6 +10,10 @@ public class PickupableObject : MonoBehaviour
     [SerializeField] private ObjectHandling objectHandling;
     [SerializeField] private ShopSell shopSell;
 
+    [Header("Penguin")]
+    [SerializeField] private PlayerWaddle playerWaddleScript;
+
+
     [Header("Game Variables")]
     [Tooltip("The higher then the object feels heavier")] [SerializeField] private float heavyFeeling = 0.5f;
     [SerializeField] private float throwForce = 10f;
@@ -20,7 +24,8 @@ public class PickupableObject : MonoBehaviour
     private bool canDrop = false;
     private bool canPickup = true;
 
-    private Vector3 smoothDampVelocity;
+    private bool objectInHand = false;
+
     private Rigidbody rb;
 
     void Start()
@@ -33,26 +38,27 @@ public class PickupableObject : MonoBehaviour
         {
             // move towards right hand location
             // if close, just keep next to it
-            float distanceBetweenHandAndObject = Vector3.Distance(transform.position, rightHandLocation.position);
-            if (distanceBetweenHandAndObject < 0.01f)
+            if (objectInHand)
             {
                 transform.position = rightHandLocation.position;
                 transform.rotation = rightHandLocation.rotation;
             }
-            else if (distanceBetweenHandAndObject < 0.3f)
-            {
-                transform.position = Vector3.Lerp(transform.position, rightHandLocation.position, 0.05f);
-                transform.rotation = rightHandLocation.rotation;
-            }
-            // if far, slowly bring closer
             else
             {
-                transform.position = Vector3.SmoothDamp(transform.position, rightHandLocation.position, ref smoothDampVelocity, heavyFeeling);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rightHandLocation.rotation, heavyFeeling);
+                float distanceBetweenHandAndObject = Vector3.Distance(transform.position, rightHandLocation.position);
+                if (distanceBetweenHandAndObject < 0.025f)
+                {
+                    objectInHand = true;
+                }
+                // if far, slowly bring closer
+                else
+                {
+                    transform.position = Vector3.Lerp(transform.position, rightHandLocation.position, 0.05f);
+                    transform.rotation = rightHandLocation.rotation;
+                }
             }
-
             // if player drops the cube
-            if(playerInputHandler.InteractTriggered && canDrop)
+            if (playerInputHandler.InteractTriggered && canDrop)
             {
                 DropObject();
 
@@ -73,12 +79,13 @@ public class PickupableObject : MonoBehaviour
                 && canPickup) {
             // if right hand, and not currently holding it, and not taken, and user presses e
             Debug.Log("[PickupableObject]"+gameObject.name+" has been picked up");
-            //transform.position = rightHandLocation.position;
+            playerWaddleScript.ObjectInHand = true;
             followingRightHand = true;
             canDrop = false;
             rb.useGravity = false;
             objectHandling.IsRightHandTaken = true;
             canPickup = false;
+            playerWaddleScript.PenguinPickUpSound();
             StartCoroutine(dropDelay());
         } 
 
@@ -108,6 +115,9 @@ public class PickupableObject : MonoBehaviour
         rb.useGravity = true;
         objectHandling.IsRightHandTaken = false;
         canPickup = false;
+        objectInHand = false;
+        playerWaddleScript.ObjectInHand = false;
+        playerWaddleScript.PenguinDroppSound();
         StartCoroutine(pickupDelay());
     }
 }

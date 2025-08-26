@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float sprintMultiplayer = 2.0f;
 
     [Header("Jump Parameters")]
-    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float jumpForce = 4.0f;
     [SerializeField] private float gravityMultiplier = 1.0f;
 
     [Header("Look Parameters")]
@@ -29,13 +30,20 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 currentMovement;
     private float verticalRotation;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioSource walkingAudioSource;
+
+    [SerializeField] private AudioClip penguinPickupSound;
+    [SerializeField] private AudioClip penguinDropSound;
+
     // if sprint triggered is true, then multiply by sprint multiplayer, if not then multiple by 1 (dont change)
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplayer : 1);
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false; 
+        Cursor.visible = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -63,6 +71,7 @@ public class FirstPersonController : MonoBehaviour
                 if (playerInputHandler.JumpTriggered)
                 {
                     currentMovement.y = jumpForce;
+                    audioSource.Play();
                 }
             }
             else
@@ -121,5 +130,14 @@ public class FirstPersonController : MonoBehaviour
 
         ApplyHorizontalRotation(mouseXRotation);
         ApplyVerticalRoation(mouseYRotation);
+    }
+
+    public void PenguinPickUpSound1()
+    {
+        audioSource.PlayOneShot(penguinPickupSound);
+    }
+    public void PenguinDroppSound1()
+    {
+        audioSource.PlayOneShot(penguinDropSound);
     }
 }
