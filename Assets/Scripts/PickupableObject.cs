@@ -32,8 +32,24 @@ public class PickupableObject : MonoBehaviour
         if (followingRightHand)
         {
             // move towards right hand location
-            transform.position = Vector3.SmoothDamp(transform.position, rightHandLocation.position, ref smoothDampVelocity, heavyFeeling);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rightHandLocation.rotation, heavyFeeling);
+            // if close, just keep next to it
+            float distanceBetweenHandAndObject = Vector3.Distance(transform.position, rightHandLocation.position);
+            if (distanceBetweenHandAndObject < 0.01f)
+            {
+                transform.position = rightHandLocation.position;
+                transform.rotation = rightHandLocation.rotation;
+            }
+            else if (distanceBetweenHandAndObject < 0.3f)
+            {
+                transform.position = Vector3.Lerp(transform.position, rightHandLocation.position, 0.05f);
+                transform.rotation = rightHandLocation.rotation;
+            }
+            // if far, slowly bring closer
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, rightHandLocation.position, ref smoothDampVelocity, heavyFeeling);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rightHandLocation.rotation, heavyFeeling);
+            }
 
             // if player drops the cube
             if(playerInputHandler.InteractTriggered && canDrop)
