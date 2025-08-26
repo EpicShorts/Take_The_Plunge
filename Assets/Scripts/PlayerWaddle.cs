@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerWaddle : MonoBehaviour
 {
@@ -8,6 +9,14 @@ public class PlayerWaddle : MonoBehaviour
     [SerializeField] private Transform pengiunBelly;
     [SerializeField] private Transform pengiunLeftFoot;
     [SerializeField] private Transform pengiunRightFoot;
+    [SerializeField] private FirstPersonController firstPersonController;
+
+    [Header("Sound")]
+    [SerializeField] private AudioClip snowFootstep_1;
+    [SerializeField] private AudioClip snowFootstep_2;
+    [SerializeField] private AudioClip penguinPickupSound;
+    [SerializeField] private AudioClip penguinDropSound;
+    private AudioSource audioSource;
 
     private int waddleStage = 0;
     private bool waddleLeft = false;
@@ -28,6 +37,7 @@ public class PlayerWaddle : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("waddleValue", 1f, 0.05f);
     }
 
@@ -41,11 +51,14 @@ public class PlayerWaddle : MonoBehaviour
         else
         {
             swimMode = true;
+            audioSource.mute = true;
         }
         if (!swimMode)
         {
             if ((playerInputHandler.MovementInput.x != 0 || playerInputHandler.MovementInput.y != 0))
             {
+                audioSource.mute = false;
+
                 // move belly left to right
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0f, 0f, waddleStage), 0.01f);
                 // move feet forwards and backwards
@@ -53,6 +66,10 @@ public class PlayerWaddle : MonoBehaviour
                 Vector3 footpositionright = new Vector3(pengiunRightFoot.localPosition.x, pengiunRightFoot.localPosition.y, (waddleStage * -0.01f) + 0.1f);
                 pengiunLeftFoot.localPosition = Vector3.Lerp(pengiunLeftFoot.localPosition, footpositionleft, 0.01f);
                 pengiunRightFoot.localPosition = Vector3.Lerp(pengiunRightFoot.localPosition, footpositionright, 0.01f);
+            }
+            else
+            {
+                audioSource.mute = true;
             }
             if ((transform.localRotation.x > 0f))
             {
@@ -100,10 +117,21 @@ public class PlayerWaddle : MonoBehaviour
         if (waddleStage == -waddleBound)
         {
             waddleLeft = true;
+            audioSource.PlayOneShot(snowFootstep_1);
         }
         else if (waddleStage == waddleBound)
         {
             waddleLeft = false;
+            audioSource.PlayOneShot(snowFootstep_2);
         }
+    }
+
+    public void PenguinPickUpSound()
+    {
+        firstPersonController.PenguinPickUpSound1();
+    }
+    public void PenguinDroppSound()
+    {
+        firstPersonController.PenguinDroppSound1();
     }
 }

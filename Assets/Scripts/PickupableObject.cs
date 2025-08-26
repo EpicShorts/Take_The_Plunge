@@ -85,6 +85,7 @@ public class PickupableObject : MonoBehaviour
             rb.useGravity = false;
             objectHandling.IsRightHandTaken = true;
             canPickup = false;
+            playerWaddleScript.PenguinPickUpSound();
             StartCoroutine(dropDelay());
         } 
 
@@ -116,6 +117,7 @@ public class PickupableObject : MonoBehaviour
         canPickup = false;
         objectInHand = false;
         playerWaddleScript.ObjectInHand = false;
+        playerWaddleScript.PenguinDroppSound();
         StartCoroutine(pickupDelay());
     }
 }
