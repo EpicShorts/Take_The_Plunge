@@ -57,7 +57,7 @@ public class PickupableObject : MonoBehaviour
                 && canPickup) {
             // if right hand, and not currently holding it, and not taken, and user presses e
             Debug.Log("[PickupableObject]"+gameObject.name+" has been picked up");
-            transform.position = rightHandLocation.position;
+            //transform.position = rightHandLocation.position;
             followingRightHand = true;
             canDrop = false;
             rb.useGravity = false;
