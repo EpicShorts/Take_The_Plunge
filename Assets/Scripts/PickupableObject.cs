@@ -9,6 +9,7 @@ public class PickupableObject : MonoBehaviour
     [SerializeField] private Transform rightHandLocation;
     [SerializeField] private ObjectHandling objectHandling;
     [SerializeField] private ShopSell shopSell;
+    [SerializeField] private Transform mainCamera;
 
     [Header("Penguin")]
     [SerializeField] private PlayerWaddle playerWaddleScript;
@@ -63,7 +64,7 @@ public class PickupableObject : MonoBehaviour
                 DropObject();
 
                 // throw the object
-                rb.AddForce(transform.forward * throwForce, ForceMode.Impulse);
+                rb.AddForce(mainCamera.forward * throwForce, ForceMode.Impulse);
                 Debug.Log("[PickupableObject]" + gameObject.name + " has been dropped");
             }
         }
