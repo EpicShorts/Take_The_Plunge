@@ -29,6 +29,8 @@ public class PickupableObject : MonoBehaviour
 
     private Rigidbody rb;
 
+    public bool firstPickup = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -61,10 +63,13 @@ public class PickupableObject : MonoBehaviour
             // if player drops the cube
             if (playerInputHandler.InteractTriggered && canDrop)
             {
+                playerWaddleScript.PenguinDroppSound();
                 DropObject();
 
                 // throw the object
                 rb.AddForce(mainCamera.forward * throwForce, ForceMode.Impulse);
+                rb.AddTorque(mainCamera.right, ForceMode.Impulse);
+                rb.AddTorque(mainCamera.up, ForceMode.Impulse);
                 Debug.Log("[PickupableObject]" + gameObject.name + " has been dropped");
             }
         }
@@ -72,6 +77,8 @@ public class PickupableObject : MonoBehaviour
     // make sure only one object can be placed in the right hand
     void OnTriggerStay(Collider other)
     {
+        //Debug.Log("[PickupableObject]" + gameObject.name + " has collided with something");
+
         // if object is right hand
         if (other.gameObject.CompareTag("RightHand") 
                 && !followingRightHand 
@@ -86,6 +93,7 @@ public class PickupableObject : MonoBehaviour
             rb.useGravity = false;
             objectHandling.IsRightHandTaken = true;
             canPickup = false;
+            firstPickup = true;
             playerWaddleScript.PenguinPickUpSound();
             StartCoroutine(dropDelay());
         } 
@@ -118,7 +126,6 @@ public class PickupableObject : MonoBehaviour
         canPickup = false;
         objectInHand = false;
         playerWaddleScript.ObjectInHand = false;
-        playerWaddleScript.PenguinDroppSound();
         StartCoroutine(pickupDelay());
     }
 }
