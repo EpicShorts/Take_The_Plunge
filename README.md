@@ -5,6 +5,18 @@ Sell your objects in the shop to get better gear
 And never go too deep...
 
 ## Dev Diary (Newest to Oldest)
+### 27/08/2025
+Additions:
++ Sea life plants
++ New objects to pickup
++ New sell area
++ New buy area
++ Pixelate effect
++ Swimming fish
+<img width="1010" height="556" alt="image" src="https://github.com/user-attachments/assets/4bba05fb-b9c3-45ff-9626-6512829a2d8e" />
+<img width="1003" height="562" alt="image" src="https://github.com/user-attachments/assets/4d40bd40-e4af-444f-91f1-c9e980765171" />
+<img width="1005" height="557" alt="image" src="https://github.com/user-attachments/assets/caee0c84-f15d-4f6e-8684-5fb0db3f4e40" />
+
 ### 26/08/2025
 Additions:
 + Player Model Penguin with walk wobble and fins for pickup
