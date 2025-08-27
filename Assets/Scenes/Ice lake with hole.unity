@@ -2312,6 +2312,7 @@ MonoBehaviour:
   rightHandLocation: {fileID: 1303815158}
   objectHandling: {fileID: 1396101210}
   shopSell: {fileID: 133748321}
+  mainCamera: {fileID: 326795082}
   playerWaddleScript: {fileID: 268909518}
   heavyFeeling: 0.2
   throwForce: 20
@@ -2763,6 +2764,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324475723}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &326795082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4267354326252652308, guid: d8ede8c5a7e99a54c8e8cd367a378240, type: 3}
+  m_PrefabInstance: {fileID: 5320907352103429429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &333594362
 GameObject:
   m_ObjectHideFlags: 0
@@ -6801,6 +6807,7 @@ MonoBehaviour:
   rightHandLocation: {fileID: 1303815158}
   objectHandling: {fileID: 1396101210}
   shopSell: {fileID: 133748321}
+  mainCamera: {fileID: 326795082}
   playerWaddleScript: {fileID: 268909518}
   heavyFeeling: 0.5
   throwForce: 10
