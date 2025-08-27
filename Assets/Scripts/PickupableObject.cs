@@ -29,6 +29,8 @@ public class PickupableObject : MonoBehaviour
 
     private Rigidbody rb;
 
+    public bool firstPickup = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -91,6 +93,7 @@ public class PickupableObject : MonoBehaviour
             rb.useGravity = false;
             objectHandling.IsRightHandTaken = true;
             canPickup = false;
+            firstPickup = true;
             playerWaddleScript.PenguinPickUpSound();
             StartCoroutine(dropDelay());
         } 
