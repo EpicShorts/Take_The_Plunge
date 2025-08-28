@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BuyingEquipment : MonoBehaviour
@@ -6,11 +8,31 @@ public class BuyingEquipment : MonoBehaviour
     [SerializeField] private FirstPersonController firstPersonController;
     [SerializeField] private ShopSell shopSell;
     [SerializeField] private OxygenSystem oxygenSystem;
+    [Header("Particle Systems")]
+    [SerializeField] private ParticleSystem oyxgenTankParticleSystem;
+    [SerializeField] private ParticleSystem flipperParticleSystem;
+    [SerializeField] private ParticleSystem weightsParticleSystem;
+    [Header("Text for signs")]
+    [SerializeField] private TextMeshProUGUI oxygenSignText;
+    [SerializeField] private TextMeshProUGUI fliipersSignText;
+    [SerializeField] private TextMeshProUGUI wieghtsSignText;
+
+
+
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip boughtSoundEffect;
+    [SerializeField] private AudioSource playerAudioSource;
+
+    private float oxygenPrice = 20;
+    private float flippersPrice = 10;
+    private float weightPrice = 30;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //playerAudioSource.GetComponent<AudioSource>();
+        updateVisualPrices();
     }
 
     // Update is called once per frame
@@ -24,18 +46,59 @@ public class BuyingEquipment : MonoBehaviour
         switch (other.tag)
         {
             case "BasicFins":
-                if (shopSell.RemoveFromBalence(10)) IncreaseSwimSpeed(0.5f);
+                if (shopSell.RemoveFromBalence((int)flippersPrice))
+                {
+                    other.gameObject.SetActive(false);
+                    IncreaseSwimSpeed(3f);
+                    flipperParticleSystem.Play();
+                    playerAudioSource.PlayOneShot(boughtSoundEffect);
+                    flippersPrice = flippersPrice * 1.8f;
+                    updateVisualPrices();
+                    StartCoroutine(RespawnObject(other.gameObject));
+                }
                 break;
             case "BasicWeights":
-                if (shopSell.RemoveFromBalence(5)) IncreaseDiveSpeed(0.5f);
+                if (shopSell.RemoveFromBalence((int)weightPrice)) 
+                {
+                    IncreaseDiveSpeed(0.5f);
+                    other.gameObject.SetActive(false);
+                    weightsParticleSystem.Play();
+                    weightPrice = weightPrice * 2.7f;
+                    StartCoroutine(RespawnObject(other.gameObject));
+                    updateVisualPrices();
+                    playerAudioSource.PlayOneShot(boughtSoundEffect);
+                }
                 break;
             case "BasicOxygenTank":
-                if (shopSell.RemoveFromBalence(20)) IncreaseMaxOxygenLevel(10);
+                if (shopSell.RemoveFromBalence((int)oxygenPrice))
+                {
+                    IncreaseMaxOxygenLevel(100); 
+                    other.gameObject.SetActive(false);
+                    oyxgenTankParticleSystem.Play();
+                    playerAudioSource.PlayOneShot(boughtSoundEffect);
+                    //Invoke("RespawnObject", 5);
+                    //RespawnObject(other.gameObject);
+                    oxygenPrice = oxygenPrice * 1.6f;
+                    updateVisualPrices();
+                    StartCoroutine(RespawnObject(other.gameObject));
+                }
                 break;
             default:
                 Debug.Log("Unknown ShopBuy tag");
                 break;
         }
+    }
+    IEnumerator RespawnObject(GameObject buyableObject)
+    {
+        yield return new WaitForSeconds(2);
+        buyableObject.gameObject.SetActive(true);
+    }
+
+    private void updateVisualPrices()
+    {
+        oxygenSignText.text = "$"+((int)oxygenPrice).ToString();
+        fliipersSignText.text = "$"+((int)flippersPrice).ToString();
+        wieghtsSignText.text = "$"+((int)weightPrice).ToString();
     }
 
     private void IncreaseSwimSpeed(float swimSpeed)

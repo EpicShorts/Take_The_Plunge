@@ -49,7 +49,7 @@ public class PickupableObject : MonoBehaviour
             else
             {
                 float distanceBetweenHandAndObject = Vector3.Distance(transform.position, rightHandLocation.position);
-                if (distanceBetweenHandAndObject < 0.025f)
+                if (distanceBetweenHandAndObject < 0.05f)
                 {
                     objectInHand = true;
                 }
@@ -68,8 +68,8 @@ public class PickupableObject : MonoBehaviour
 
                 // throw the object
                 rb.AddForce(mainCamera.forward * throwForce, ForceMode.Impulse);
-                rb.AddTorque(mainCamera.right, ForceMode.Impulse);
-                rb.AddTorque(mainCamera.up, ForceMode.Impulse);
+                //rb.AddTorque(mainCamera.right, ForceMode.Impulse);
+                //rb.AddTorque(mainCamera.up, ForceMode.Impulse);
                 Debug.Log("[PickupableObject]" + gameObject.name + " has been dropped");
             }
         }

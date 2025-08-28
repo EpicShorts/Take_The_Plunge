@@ -14,7 +14,7 @@ public class fishMoving : MonoBehaviour
         //rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         rotationCurrent = transform.rotation.y * 360;
-        Debug.Log("[fishMoving] rotationCurrent: "+rotationCurrent);
+        //Debug.Log("[fishMoving] rotationCurrent: "+rotationCurrent);
     }
 
     // Update is called once per frame
