@@ -5,6 +5,23 @@ Sell your objects in the shop to get better gear
 And never go too deep...
 
 ## Dev Diary (Newest to Oldest)
+### 28/08/2025
+A final end goal has now been made.
+
+Additions:
++ Buying Oxygen Tank
++ Buying Weights
++ Buying Flippers
++ Secrets
+
+Changes:
++ Oxygen system is visual now
++ Selling Area visuals
+<img width="951" height="522" alt="image" src="https://github.com/user-attachments/assets/7acef3df-93b4-45b9-92b9-f9b7f7343fac" />
+<img width="962" height="525" alt="image" src="https://github.com/user-attachments/assets/3582e1f4-38a3-4c5b-8fd9-94195acbe241" />
+<img width="847" height="471" alt="image" src="https://github.com/user-attachments/assets/87012e87-bf9b-4da8-b0ab-6b77ad3a6d26" />
+
+
 ### 27/08/2025
 Additions:
 + Sea life plants
