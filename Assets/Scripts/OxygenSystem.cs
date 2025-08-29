@@ -42,6 +42,8 @@ public class OxygenSystem : MonoBehaviour
 
     [SerializeField] private MusicManager musicManager;
 
+    [SerializeField] private AudioClip deathSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -99,8 +101,9 @@ public class OxygenSystem : MonoBehaviour
         {
             //Debug.Log("[OxygenSystem] Game Over!");
             GameOver = true;
+            audioSource.PlayOneShot(deathSound);
             musicManager.DeathOutro();
-            fadeToBlackScript.FadeToBlackWithScene("Death",1f);
+            fadeToBlackScript.FadeToBlackWithScene("MainMenu",1f); // CHANGE TO 'DEATH' LATER
             stuckLocation = transform.position;
             //characterController.enabled = false;
             firstPersonController.gameOver = true;
