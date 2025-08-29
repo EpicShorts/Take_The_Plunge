@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ObjectSpinningUpDown : MonoBehaviour
 {
+    private float speedOfAnimations = 5f;
+    private float currentTime;
+
     private float rotationCurrent = 0;
     //[SerializeField] private ParticleSystem particleSystemScatter;
 
@@ -9,13 +12,16 @@ public class ObjectSpinningUpDown : MonoBehaviour
     void Start()
     {
         rotationCurrent = transform.rotation.y * 360;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        currentTime = Time.deltaTime;
+
         rotationCurrent = rotationCurrent + (100 * Time.deltaTime);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0f, -rotationCurrent, 0f), 0.1f);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0f, -rotationCurrent, 0f), speedOfAnimations * Time.deltaTime);
     }
 
     //private void OnDestroy()

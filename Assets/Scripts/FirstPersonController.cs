@@ -91,7 +91,7 @@ public class FirstPersonController : MonoBehaviour
         {
             if (playerInputHandler.SneakTriggered && currentMovement.y > -diveSpeed)
             {
-                currentMovement.y += -diveForce * diveSpeedMultiplyer;
+                currentMovement.y += -diveForce * diveSpeedMultiplyer * Time.deltaTime * 140f;
             }
             if (currentMovement.y < 10f)
             {
