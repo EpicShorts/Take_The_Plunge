@@ -5,6 +5,26 @@ Sell your objects in the shop to get better gear
 And never go too deep...
 
 ## Dev Diary (Newest to Oldest)
+### 29/08/2025
+A development version has been uploaded to Itch.io for player testing.  
+Additions:
++ The Shop Keeper
++ Music
++ Main Menu
++ End Condition
++ Scenary overhaul
+
+Changes:
++ PC -> WebGL
++ tweaked price values and sell values
+<img width="981" height="542" alt="image" src="https://github.com/user-attachments/assets/ca99cefd-6c14-4444-be84-baf47e6f971d" />
+<img width="980" height="544" alt="image" src="https://github.com/user-attachments/assets/d289a690-45f8-4f08-8110-e22576d748bc" />
+<img width="677" height="462" alt="image" src="https://github.com/user-attachments/assets/8a0a10cd-8bb1-4e8b-82ff-3dd7ab768d36" />
+<img width="975" height="537" alt="image" src="https://github.com/user-attachments/assets/e1bb3139-91d7-4c8f-bafb-6d41bdcbe090" />
+
+
+
+
 ### 28/08/2025
 A final end goal has now been made.
 
