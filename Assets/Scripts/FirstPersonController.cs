@@ -36,6 +36,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private AudioClip penguinPickupSound;
     [SerializeField] private AudioClip penguinDropSound;
 
+    public bool gameOver = false;
+
     // if sprint triggered is true, then multiply by sprint multiplayer, if not then multiple by 1 (dont change)
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplayer : 1);
 
@@ -48,8 +50,13 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleRotation();
+        if (!gameOver)
+        {
+            HandleMovement();
+            HandleRotation();
+        }
+        //HandleMovement();
+        //HandleRotation();
     }
 
     private Vector3 CalculateWorldDirection()

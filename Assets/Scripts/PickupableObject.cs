@@ -31,6 +31,8 @@ public class PickupableObject : MonoBehaviour
 
     public bool firstPickup = false;
 
+    private bool hasSold = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,7 +51,7 @@ public class PickupableObject : MonoBehaviour
             else
             {
                 float distanceBetweenHandAndObject = Vector3.Distance(transform.position, rightHandLocation.position);
-                if (distanceBetweenHandAndObject < 0.05f)
+                if (distanceBetweenHandAndObject < 0.1f)
                 {
                     objectInHand = true;
                 }
@@ -87,20 +89,31 @@ public class PickupableObject : MonoBehaviour
                 && canPickup) {
             // if right hand, and not currently holding it, and not taken, and user presses e
             Debug.Log("[PickupableObject]"+gameObject.name+" has been picked up");
-            playerWaddleScript.ObjectInHand = true;
-            followingRightHand = true;
+            //playerWaddleScript.ObjectInHand = true;
+            //followingRightHand = true;
             canDrop = false;
+            //rb.useGravity = false;
+            //objectHandling.IsRightHandTaken = true;
+            //canPickup = false;
+            firstPickup = true;
+
+            //objectInHand = true;
+            // silly
+            followingRightHand = true;
             rb.useGravity = false;
             objectHandling.IsRightHandTaken = true;
             canPickup = false;
-            firstPickup = true;
+            objectInHand = true;
+            playerWaddleScript.ObjectInHand = true;
+
             playerWaddleScript.PenguinPickUpSound();
             StartCoroutine(dropDelay());
         } 
 
-        if (other.gameObject.CompareTag("ShopSell"))
+        if (other.gameObject.CompareTag("ShopSell") && !hasSold)
         {
             shopSell.AddToBalence(valueWorth);
+            hasSold = true;
             DropObject();
             Destroy(gameObject);
         }

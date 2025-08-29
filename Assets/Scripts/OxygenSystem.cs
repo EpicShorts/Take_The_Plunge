@@ -25,6 +25,13 @@ public class OxygenSystem : MonoBehaviour
     private int bubblesLength = 0;
     private float bubbleSplit;
 
+    [SerializeField] private fadeToBlack fadeToBlackScript;
+
+    private Vector3 stuckLocation;
+
+    [SerializeField] private CharacterController characterController;
+    [SerializeField] private FirstPersonController firstPersonController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,8 +63,13 @@ public class OxygenSystem : MonoBehaviour
         {
             //Debug.Log("[OxygenSystem] Game Over!");
             GameOver = true;
+            fadeToBlackScript.FadeToBlackWithScene("Death");
+            stuckLocation = transform.position;
+            //characterController.enabled = false;
+            firstPersonController.gameOver = true;
             return;
         }
+
         //Debug.Log("[OxygenSystem] Oxygen Level: "+OxygenLevel);
 
         updateBubbles();

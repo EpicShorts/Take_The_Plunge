@@ -158,7 +158,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.14, y: 0.86, z: 0.31}
+  m_Size: {x: 1.99, y: 0.83, z: 0.31}
   m_Center: {x: 0, y: 0.24, z: -0.12}
 --- !u!114 &93937278997027434
 MonoBehaviour:
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishHost: {fileID: 93937278997027434}
   ifCaught: 0
+  rb: {fileID: 0}
 --- !u!1001 &128522747075601434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,7 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84b327d30db15f541852081d074e5686, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.088
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84b327d30db15f541852081d074e5686, type: 3}
       propertyPath: m_LocalPosition.y

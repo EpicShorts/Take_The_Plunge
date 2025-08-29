@@ -6,10 +6,12 @@ public class ShopSell : MonoBehaviour
 {
     public int Shop_Biscuit_Balence = 0;
 
-    private string textOnScreen = "Balence: 0\r\nv Throw here v";
+    private string textOnScreen = "0";
 
     [SerializeField] private TextMeshProUGUI billboardTextMesh;
     [SerializeField] private ParticleSystem sellParticle;
+
+    [SerializeField] private AudioSource audioSourceCash;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,6 +34,7 @@ public class ShopSell : MonoBehaviour
         textOnScreen = Shop_Biscuit_Balence.ToString();
         billboardTextMesh.text = textOnScreen;
         sellParticle.Play();
+        audioSourceCash.Play();
     }
     public bool RemoveFromBalence(int cost)
     {

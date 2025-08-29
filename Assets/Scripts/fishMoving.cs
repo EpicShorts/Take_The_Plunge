@@ -26,10 +26,10 @@ public class fishMoving : MonoBehaviour
             rotationCurrent = rotationCurrent + 10*Time.deltaTime;
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0f, -rotationCurrent, 0f), 0.1f);
         }
-        if (ifCaught && !gravityChanged)
-        {
-            gravityChanged = true;
-            rb.useGravity = true;
-        }
+        //if (ifCaught && !gravityChanged)
+        //{
+        //    gravityChanged = true;
+        //    rb.useGravity = true;
+        //}
     }
 }

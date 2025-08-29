@@ -24,6 +24,12 @@ public class BuyingEquipment : MonoBehaviour
     [SerializeField] private AudioClip boughtSoundEffect;
     [SerializeField] private AudioSource playerAudioSource;
 
+    [Header("ShopKeeper")]
+    //[SerializeField] private AudioSource shopKeeperAudio;
+    //[SerializeField] private AudioClip happySell;
+    //[SerializeField] private AudioClip noSell;
+    [SerializeField] private ShopKeeper shopKeeperScript;
+
     private float oxygenPrice = 20;
     private float flippersPrice = 10;
     private float weightPrice = 30;
@@ -49,14 +55,21 @@ public class BuyingEquipment : MonoBehaviour
                 if (shopSell.RemoveFromBalence((int)flippersPrice))
                 {
                     other.gameObject.SetActive(false);
-                    IncreaseSwimSpeed(3f);
+                    IncreaseSwimSpeed(2f);
                     flipperParticleSystem.Play();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
                     flippersPrice = flippersPrice * 1.8f;
                     updateVisualPrices();
                     StartCoroutine(RespawnObject(other.gameObject));
+
+                    StartCoroutine(happySellMethod());
                 }
-                break;
+                else
+                {
+                    //shopKeeperAudio.PlayOneShot(noSell);
+                    shopKeeperScript.shopKeeperSad();
+                }
+                    break;
             case "BasicWeights":
                 if (shopSell.RemoveFromBalence((int)weightPrice)) 
                 {
@@ -67,6 +80,12 @@ public class BuyingEquipment : MonoBehaviour
                     StartCoroutine(RespawnObject(other.gameObject));
                     updateVisualPrices();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
+
+                    StartCoroutine(happySellMethod());
+                }
+                else
+                {
+                    shopKeeperScript.shopKeeperSad();
                 }
                 break;
             case "BasicOxygenTank":
@@ -81,6 +100,12 @@ public class BuyingEquipment : MonoBehaviour
                     oxygenPrice = oxygenPrice * 1.6f;
                     updateVisualPrices();
                     StartCoroutine(RespawnObject(other.gameObject));
+
+                    StartCoroutine(happySellMethod());
+                }
+                else
+                {
+                    shopKeeperScript.shopKeeperSad();
                 }
                 break;
             default:
@@ -92,6 +117,12 @@ public class BuyingEquipment : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         buyableObject.gameObject.SetActive(true);
+    }
+
+    IEnumerator happySellMethod()
+    {
+        yield return new WaitForSeconds(0.5f);
+        shopKeeperScript.shopKeeperHappy();
     }
 
     private void updateVisualPrices()

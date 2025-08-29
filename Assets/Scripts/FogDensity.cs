@@ -24,8 +24,16 @@ public class FogDensity : MonoBehaviour
         }
         else
         {
-            RenderSettings.fogDensity = 0.014f;
+            RenderSettings.fogDensity = 0;
         }
+        //if (fogdensityvalue >= 0)
+        //{
+        //    RenderSettings.fogDensity = fogdensityvalue;
+        //}
+        //else
+        //{
+        //    RenderSettings.fogDensity = 0.014f;
+        //}
         if (playerLocation.position.y < -1)
         {
             directionalLight.gameObject.SetActive(false);
