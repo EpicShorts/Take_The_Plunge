@@ -32,6 +32,16 @@ public class OxygenSystem : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private FirstPersonController firstPersonController;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip bubblePop;
+
+    [SerializeField] private AudioClip splashSound;
+    private bool splashSoundPlayed = false;
+    private bool deepdarkPlaying = false;
+    [SerializeField] private AudioClip reverseSplashSound;
+
+    [SerializeField] private MusicManager musicManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,7 +53,28 @@ public class OxygenSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!splashSoundPlayed && (transform.position.y < 0))
+        {
+            splashSoundPlayed=true;
+            audioSource.PlayOneShot(splashSound);
+            musicManager.OceanMusicToggle();
+        }
+        else if(splashSoundPlayed && (transform.position.y > 0))
+        {
+            splashSoundPlayed = false;
+            audioSource.PlayOneShot(reverseSplashSound);
+            musicManager.AboveMusicToggle();
+        }
+        else if (!deepdarkPlaying && (transform.position.y < -100))
+        {
+            deepdarkPlaying = true;
+            musicManager.DeepDarkInto();
+        }
+        else if (deepdarkPlaying && (transform.position.y > -100))
+        {
+            deepdarkPlaying = false;
+            musicManager.DeepDarkOuto();
+        }
     }
 
     void decreaseOxygen()
@@ -58,12 +89,18 @@ public class OxygenSystem : MonoBehaviour
             }
             return;
         }
+
+        bubbleSplit = OxygenMax / bubblesLength;
         OxygenLevel--;
+        if ((OxygenLevel%bubbleSplit) == 0) audioSource.PlayOneShot(bubblePop);
+        //OxygenLevel--;
+        //audioSource.PlayOneShot(bubblePop);
         if (OxygenLevel <= 0)
         {
             //Debug.Log("[OxygenSystem] Game Over!");
             GameOver = true;
-            fadeToBlackScript.FadeToBlackWithScene("Death");
+            musicManager.DeathOutro();
+            fadeToBlackScript.FadeToBlackWithScene("Death",1f);
             stuckLocation = transform.position;
             //characterController.enabled = false;
             firstPersonController.gameOver = true;
@@ -77,6 +114,7 @@ public class OxygenSystem : MonoBehaviour
 
     void updateBubbles()
     {
+        bubblesLength = bubbles.Count;
         bubbleSplit = OxygenMax / bubblesLength;
         // 1.2 2.4 3.6 -> 8
         // 10 9 8 7

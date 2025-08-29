@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ShopKeeper : MonoBehaviour
@@ -9,6 +10,7 @@ public class ShopKeeper : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioClip happySell;
     [SerializeField] private AudioClip noSell;
+    [SerializeField] private AudioClip squark;
 
     private Rigidbody rb;
 
@@ -36,6 +38,20 @@ public class ShopKeeper : MonoBehaviour
         shopKeeperAudio.PlayOneShot(happySell);
         rb.AddForce(transform.up * 4f, ForceMode.Impulse);
 
+    }
+    public void shopKeeperReply()
+    {
+        if (Vector3.Distance(playerLocation.position, transform.position) < 10f)
+        {
+            StartCoroutine(squarkMethod());
+        }
+    }
+
+    private IEnumerator squarkMethod()
+    {
+        yield return new WaitForSeconds(1);
+        shopKeeperAudio.PlayOneShot(squark);
+        rb.AddForce(transform.up * 3f, ForceMode.Impulse);
     }
 
     public void shopKeeperSad()

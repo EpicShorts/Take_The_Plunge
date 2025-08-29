@@ -25,7 +25,7 @@ public class gameFinish : MonoBehaviour
 
     IEnumerator gameFinishWait()
     {
-        fadeToBlackScript.FadeToBlackWithScene("Ending");
+        fadeToBlackScript.FadeToBlackWithScene("Ending",5f);
         yield return new WaitForSeconds(2f);
         Debug.Log("Game done, well done");
     }

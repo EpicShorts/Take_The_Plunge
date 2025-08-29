@@ -36,6 +36,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private AudioClip penguinPickupSound;
     [SerializeField] private AudioClip penguinDropSound;
 
+    [SerializeField] private ShopKeeper shopKeeper;
+
     public bool gameOver = false;
 
     // if sprint triggered is true, then multiply by sprint multiplayer, if not then multiple by 1 (dont change)
@@ -79,6 +81,7 @@ public class FirstPersonController : MonoBehaviour
                 {
                     currentMovement.y = jumpForce;
                     audioSource.Play();
+                    shopKeeper.shopKeeperReply();
                 }
             }
             else
