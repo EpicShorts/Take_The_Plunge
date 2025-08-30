@@ -86,7 +86,7 @@ public class BuyingEquipment : MonoBehaviour
                 if (shopSell.RemoveFromBalence((int)flippersPrice))
                 {
                     other.gameObject.SetActive(false);
-                    IncreaseSwimSpeed(2f);
+                    IncreaseSwimSpeed(0.5f);
                     flipperParticleSystem.Play();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
                     flippersPrice = flippersPrice * 1.2f;

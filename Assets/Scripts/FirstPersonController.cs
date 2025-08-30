@@ -41,6 +41,16 @@ public class FirstPersonController : MonoBehaviour
 
     public bool gameOver = false;
 
+    [Header("HeadFeetCheck")]
+    [SerializeField] private BoxCollider headBoxCollider;
+    [SerializeField] private BoxCollider feetBoxCollider;
+    [SerializeField] private LayerMask collisionMask;
+
+    [SerializeField] private Transform headTransform;
+    [SerializeField] private Transform feetTransform;
+
+    RaycastHit hit;
+
     // if sprint triggered is true, then multiply by sprint multiplayer, if not then multiple by 1 (dont change)
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplayer : 1);
 
@@ -93,10 +103,37 @@ public class FirstPersonController : MonoBehaviour
         // if just about to go to the top
         if (transform.position.y < 0f)
         {
+            //if (feetBoxCollider)
+            Debug.DrawRay(headTransform.position, Vector3.up * 0.2f, Color.red);
+            if (Physics.Raycast(headTransform.position, Vector3.up, out hit, 0.2f, collisionMask))
+            {
+                //Debug.Log("[FPC] SomethingAbove");
+                //Debug.Log("Collided above with: " + hit.collider.gameObject.name);
+                if (currentMovement.y > 0f)
+                {
+                    currentMovement.y = 0f;
+                }
+                //currentMovement.y = 0f;
+            }
+            Debug.DrawRay(feetTransform.position, Vector3.down * 0.2f, Color.red);
+            if (Physics.Raycast(feetTransform.position, Vector3.down, out hit, 0.2f, collisionMask))
+            {
+                //Debug.Log("[FPC] SomethingAbove");
+                //Debug.Log("Collided above with: " + hit.collider.gameObject.name);
+                if (currentMovement.y < 0f)
+                {
+                    currentMovement.y = 0f;
+                }
+                //currentMovement.y = 0f;
+            }
             //Debug.Log("[FPC] currentMovement.y: " + currentMovement.y);
             // && currentMovement.y > -diveSpeed
             if (playerInputHandler.SneakTriggered && currentMovement.y > -diveSpeed)
             {
+                if (currentMovement.y >= 1f)
+                {
+                    currentMovement.y = 1f;
+                }
                 currentMovement.y += -diveForce * diveSpeedMultiplyer * Time.deltaTime * 140f;
             }
             if (currentMovement.y < (10f+ floatSpeedIncrease))
