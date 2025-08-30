@@ -12,6 +12,23 @@ but we made it.
 go play it at: 
 https://epicshortsboy.itch.io/take-the-plunge-brackeys-game-jam-submission
 <img width="1625" height="860" alt="image" src="https://github.com/user-attachments/assets/4af3574b-2ccc-4c12-9490-3163bb6ad872" />
+<img width="630" height="500" alt="1" src="https://github.com/user-attachments/assets/10b3de02-f6b0-4613-a0c3-e5045fa058ea" />
+<img width="630" height="500" alt="2" src="https://github.com/user-attachments/assets/fcf367ec-d3de-46d5-b2ba-4ad6fa9e331a" />
+<img width="630" height="500" alt="3" src="https://github.com/user-attachments/assets/7decbebf-587d-4911-9a5d-316083bc559e" />
+<img width="630" height="500" alt="4" src="https://github.com/user-attachments/assets/57078a7e-c853-4ef3-be0b-9e5d7614dc09" />
+<img width="630" height="500" alt="Buy from Bingu5" src="https://github.com/user-attachments/assets/5c6f87df-cb78-4be8-9d5a-42aea51c60cc" />
+
+Additions:
++ new item, the rubber dingy
++ more expensive fish at the bottom
+
+Changes:
++ shop area
++ ending
++ start sequence
+<img width="990" height="499" alt="TTPScreenshot2" src="https://github.com/user-attachments/assets/6c9e51f7-3be7-4525-afe2-1b9f871a14f4" />
+<img width="956" height="499" alt="TTPScreenshot1" src="https://github.com/user-attachments/assets/c8be008f-6049-434f-8cb2-a04d2031ad44" />
+
 
 
 ### 29/08/2025
