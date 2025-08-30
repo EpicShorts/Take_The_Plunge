@@ -1,4 +1,8 @@
 # Take The Plunge!
+
+go play it at: 
+https://epicshortsboy.itch.io/take-the-plunge-brackeys-game-jam-submission
+
 This is my submission to the Brackeys Game Jam - Risk It For The Biscuit!  
 The game is about a ice diver who has limited oxygen and has to dive deeper to get more valuable objects  
 Sell your objects in the shop to get better gear  
@@ -9,8 +13,6 @@ And never go too deep...
 THE GAME IS SUBMITTED
 yeah today was filled with constant bug fixing and tweaking
 but we made it.
-go play it at: 
-https://epicshortsboy.itch.io/take-the-plunge-brackeys-game-jam-submission
 <img width="1625" height="860" alt="image" src="https://github.com/user-attachments/assets/4af3574b-2ccc-4c12-9490-3163bb6ad872" />
 <img width="630" height="500" alt="1" src="https://github.com/user-attachments/assets/10b3de02-f6b0-4613-a0c3-e5045fa058ea" />
 <img width="630" height="500" alt="2" src="https://github.com/user-attachments/assets/fcf367ec-d3de-46d5-b2ba-4ad6fa9e331a" />
