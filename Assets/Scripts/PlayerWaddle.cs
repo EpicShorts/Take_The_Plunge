@@ -86,7 +86,7 @@ public class PlayerWaddle : MonoBehaviour
         {
             if (!swimModeComplete)
             {
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(90f, 0f, 0f), speedOfAnimations * currentTime);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(50f, 0f, 0f), speedOfAnimations * currentTime);
                 transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0f, -0.2f, -0.7f), speedOfAnimations * currentTime);
                 if(!(transform.localRotation.x < 90f))
                 {
@@ -104,7 +104,7 @@ public class PlayerWaddle : MonoBehaviour
         else if (!ObjectInHand)
         {
             penguinArms.localRotation = Quaternion.Slerp(penguinArms.localRotation, penguinArmEndRotation, speedOfAnimations * currentTime);
-           penguinArms.localPosition = Vector3.Lerp(penguinArms.localPosition, penguinArmEndPosition, speedOfAnimations * currentTime);
+            penguinArms.localPosition = Vector3.Lerp(penguinArms.localPosition, penguinArmEndPosition, speedOfAnimations * currentTime);
         }
     }
 

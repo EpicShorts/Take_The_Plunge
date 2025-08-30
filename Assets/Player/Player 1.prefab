@@ -326,6 +326,8 @@ MonoBehaviour:
   walkingAudioSource: {fileID: 7848917257818536291}
   penguinPickupSound: {fileID: 8300000, guid: add99e6c0d59ff443b0a1dcfe77997dc, type: 3}
   penguinDropSound: {fileID: 8300000, guid: 734051abe4c773441aaccc370b9d1cf8, type: 3}
+  shopKeeper: {fileID: 0}
+  gameOver: 0
 --- !u!114 &8075465133267343470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +356,15 @@ MonoBehaviour:
   firstPersonController: {fileID: 3710805401270540619}
   shopSell: {fileID: 0}
   oxygenSystem: {fileID: 6158145530213966547}
+  oyxgenTankParticleSystem: {fileID: 0}
+  flipperParticleSystem: {fileID: 0}
+  weightsParticleSystem: {fileID: 0}
+  oxygenSignText: {fileID: 0}
+  fliipersSignText: {fileID: 0}
+  wieghtsSignText: {fileID: 0}
+  boughtSoundEffect: {fileID: 0}
+  playerAudioSource: {fileID: 0}
+  shopKeeperScript: {fileID: 0}
 --- !u!114 &6158145530213966547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +380,24 @@ MonoBehaviour:
   OxygenLevel: 10
   GameOver: 0
   OxygenMax: 10
+  bubble_1: {fileID: 0}
+  bubble_2: {fileID: 0}
+  bubble_3: {fileID: 0}
+  bubble_4: {fileID: 0}
+  bubble_5: {fileID: 0}
+  bubble_6: {fileID: 0}
+  bubble_7: {fileID: 0}
+  bubble_8: {fileID: 0}
+  bubbles: []
+  fadeToBlackScript: {fileID: 0}
+  characterController: {fileID: 0}
+  firstPersonController: {fileID: 0}
+  audioSource: {fileID: 0}
+  bubblePop: {fileID: 0}
+  splashSound: {fileID: 0}
+  reverseSplashSound: {fileID: 0}
+  musicManager: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!82 &5765071463259833497
 AudioSource:
   m_ObjectHideFlags: 0
@@ -750,6 +779,7 @@ MonoBehaviour:
   penguinPickupSound: {fileID: 8300000, guid: add99e6c0d59ff443b0a1dcfe77997dc, type: 3}
   penguinDropSound: {fileID: 8300000, guid: 734051abe4c773441aaccc370b9d1cf8, type: 3}
   ObjectInHand: 0
+  speedOfAnimations: 5
   penguinArms: {fileID: 2897094090357746093}
 --- !u!82 &7848917257818536291
 AudioSource:
