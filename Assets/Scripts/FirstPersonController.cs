@@ -22,7 +22,7 @@ public class FirstPersonController : MonoBehaviour
 
     [Header("Game Parameters")]
     [SerializeField] private float diveForce = 0.05f;
-    [SerializeField] private float diveSpeed = 5f;
+    [SerializeField] public float diveSpeed = 5f;
     [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float surfaceSpeedMultiplyer = 1f;
     [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float underWaterSpeedMultiplyer = 1f;
     [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float diveSpeedMultiplyer = 1f;
@@ -92,11 +92,15 @@ public class FirstPersonController : MonoBehaviour
         // if just about to go to the top
         if (transform.position.y < 0f)
         {
+            Debug.Log("[FPC] currentMovement.y: " + currentMovement.y);
+            // && currentMovement.y > -diveSpeed
             if (playerInputHandler.SneakTriggered && currentMovement.y > -diveSpeed)
             {
                 currentMovement.y += -diveForce * diveSpeedMultiplyer * Time.deltaTime * 140f;
             }
-            if (currentMovement.y < 10f)
+            if (currentMovement.y < (10f))
+            // ((10f*(diveSpeed/10)))+5f)
+            // change above to go up faster... upgrade?
             {
                 currentMovement.y += Physics.gravity.y * -gravityMultiplier * Time.deltaTime * 0.5f;
             }

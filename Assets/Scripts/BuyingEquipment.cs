@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ public class BuyingEquipment : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fliipersSignText;
     [SerializeField] private TextMeshProUGUI wieghtsSignText;
 
+    [Header("Objects on table")]
+    public List<GameObject> oxygenTanksVisible = new List<GameObject>();
+    public List<GameObject> flippersVisible = new List<GameObject>();
+    public List<GameObject> weightsVisible = new List<GameObject>();
+
 
 
 
@@ -31,14 +37,26 @@ public class BuyingEquipment : MonoBehaviour
     [SerializeField] private ShopKeeper shopKeeperScript;
 
     private float oxygenPrice = 20;
-    private float flippersPrice = 10;
-    private float weightPrice = 30;
+    private float flippersPrice = 15;
+    private float weightPrice = 10;
+
+    private int oxygenTankCount;
+    private int flippersCount;
+    private int weightsCount;
+
+    private int oxygenTankSold = 0;
+    private int flippersSold = 0;
+    private int weightsSold = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //playerAudioSource.GetComponent<AudioSource>();
         updateVisualPrices();
+
+        oxygenTankCount = oxygenTanksVisible.Count;
+        flippersCount = flippersVisible.Count;
+        weightsCount = weightsVisible.Count;
     }
 
     // Update is called once per frame
@@ -59,10 +77,23 @@ public class BuyingEquipment : MonoBehaviour
                     flipperParticleSystem.Play();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
                     flippersPrice = flippersPrice * 1.8f;
-                    updateVisualPrices();
-                    StartCoroutine(RespawnObject(other.gameObject));
-
+                    //updateVisualPrices();
+                    //StartCoroutine(RespawnObject(other.gameObject));
                     StartCoroutine(happySellMethod());
+                    if (flippersSold < flippersCount)
+                    {
+                        StartCoroutine(RespawnObject(other.gameObject));
+                        //updateVisualPrices();
+                        fliipersSignText.text = "$" + ((int)flippersPrice).ToString();
+                        flippersVisible[flippersSold].SetActive(false);
+                        flippersSold++;
+                    }
+                    else if (flippersSold == flippersCount)
+                    {
+                        fliipersSignText.text = "X";
+                        other.gameObject.SetActive(false);
+                    }
+                    //oxygenTanksVisible[oxygenTankSold].SetActive(false);
                 }
                 else
                 {
@@ -73,15 +104,29 @@ public class BuyingEquipment : MonoBehaviour
             case "BasicWeights":
                 if (shopSell.RemoveFromBalence((int)weightPrice)) 
                 {
-                    IncreaseDiveSpeed(0.5f);
+                    IncreaseDiveSpeed(2f);
                     other.gameObject.SetActive(false);
                     weightsParticleSystem.Play();
-                    weightPrice = weightPrice * 2.7f;
-                    StartCoroutine(RespawnObject(other.gameObject));
-                    updateVisualPrices();
+                    weightPrice = weightPrice * 1.7f;
+                    //StartCoroutine(RespawnObject(other.gameObject));
+                    //updateVisualPrices();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
 
                     StartCoroutine(happySellMethod());
+
+                    if (weightsSold < weightsCount)
+                    {
+                        StartCoroutine(RespawnObject(other.gameObject));
+                        //updateVisualPrices();
+                        wieghtsSignText.text = "$" + ((int)weightPrice).ToString();
+                        weightsVisible[weightsSold].SetActive(false);
+                        weightsSold++;
+                    }
+                    else if (weightsSold == weightsCount)
+                    {
+                        wieghtsSignText.text = "X";
+                        other.gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
@@ -98,10 +143,25 @@ public class BuyingEquipment : MonoBehaviour
                     //Invoke("RespawnObject", 5);
                     //RespawnObject(other.gameObject);
                     oxygenPrice = oxygenPrice * 1.6f;
-                    updateVisualPrices();
-                    StartCoroutine(RespawnObject(other.gameObject));
+                    //updateVisualPrices();
+                    //StartCoroutine(RespawnObject(other.gameObject));
 
                     StartCoroutine(happySellMethod());
+
+
+                    if (oxygenTankSold < oxygenTankCount)
+                    {
+                        StartCoroutine(RespawnObject(other.gameObject));
+                        //updateVisualPrices();
+                        oxygenSignText.text = "$" + ((int)oxygenPrice).ToString();
+                        oxygenTanksVisible[oxygenTankSold].SetActive(false);
+                        oxygenTankSold++;
+                    }
+                    else if (oxygenTankSold == oxygenTankCount)
+                    {
+                        oxygenSignText.text = "X";
+                        other.gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
@@ -140,7 +200,7 @@ public class BuyingEquipment : MonoBehaviour
 
     private void IncreaseDiveSpeed(float diveSpeed)
     {
-        firstPersonController.diveSpeedMultiplyer += diveSpeed;
+        firstPersonController.diveSpeed += diveSpeed;
         Debug.Log("[BuyingEquipment] Dive Speed Increased");
     }
 
