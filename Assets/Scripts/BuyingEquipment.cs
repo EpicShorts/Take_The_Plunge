@@ -89,7 +89,7 @@ public class BuyingEquipment : MonoBehaviour
                     IncreaseSwimSpeed(2f);
                     flipperParticleSystem.Play();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
-                    flippersPrice = flippersPrice * 1.8f;
+                    flippersPrice = flippersPrice * 1.2f;
                     //updateVisualPrices();
                     //StartCoroutine(RespawnObject(other.gameObject));
                     StartCoroutine(happySellMethod());
@@ -121,7 +121,7 @@ public class BuyingEquipment : MonoBehaviour
                     IncreaseDiveSpeed(2f);
                     other.gameObject.SetActive(false);
                     weightsParticleSystem.Play();
-                    weightPrice = weightPrice * 1.7f;
+                    weightPrice = weightPrice * 1.3f;
                     //StartCoroutine(RespawnObject(other.gameObject));
                     //updateVisualPrices();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
@@ -157,7 +157,7 @@ public class BuyingEquipment : MonoBehaviour
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
                     //Invoke("RespawnObject", 5);
                     //RespawnObject(other.gameObject);
-                    oxygenPrice = oxygenPrice * 1.6f;
+                    oxygenPrice = oxygenPrice * 1.4f;
                     //updateVisualPrices();
                     //StartCoroutine(RespawnObject(other.gameObject));
 
@@ -194,7 +194,7 @@ public class BuyingEquipment : MonoBehaviour
                     other.gameObject.SetActive(false);
                     dingyParticleSystem.Play();
                     playerAudioSource.PlayOneShot(boughtSoundEffect);
-                    dingyPrice = dingyPrice * 2.1f;
+                    dingyPrice = dingyPrice * 1.5f;
                     StartCoroutine(happySellMethod());
 
 

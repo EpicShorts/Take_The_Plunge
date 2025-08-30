@@ -93,7 +93,7 @@ public class FirstPersonController : MonoBehaviour
         // if just about to go to the top
         if (transform.position.y < 0f)
         {
-            Debug.Log("[FPC] currentMovement.y: " + currentMovement.y);
+            //Debug.Log("[FPC] currentMovement.y: " + currentMovement.y);
             // && currentMovement.y > -diveSpeed
             if (playerInputHandler.SneakTriggered && currentMovement.y > -diveSpeed)
             {

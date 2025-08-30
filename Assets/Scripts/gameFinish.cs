@@ -7,6 +7,8 @@ public class gameFinish : MonoBehaviour
 
     [SerializeField] private fadeToBlack fadeToBlackScript;
 
+    [SerializeField] private FirstPersonController firstPersonController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,8 +27,10 @@ public class gameFinish : MonoBehaviour
 
     IEnumerator gameFinishWait()
     {
-        fadeToBlackScript.FadeToBlackWithScene("Ending",5f);
+        //firstPersonController.gameOver = true;
+        fadeToBlackScript.FadeToBlackWithScene("Ending",3f);
         yield return new WaitForSeconds(2f);
+        //firstPersonController.gameOver = true;
         Debug.Log("Game done, well done");
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class OxygenSystem : MonoBehaviour
 {
-    [SerializeField] public int OxygenLevel = 10;
+    [SerializeField] public int OxygenLevel = 150;
     public bool GameOver = false;
 
     [Header("Game Parameters")]
-    [SerializeField] public int OxygenMax = 10;
+    [SerializeField] public int OxygenMax = 150;
 
     [Header("Bubbles")]
     [SerializeField] private GameObject bubble_1;
