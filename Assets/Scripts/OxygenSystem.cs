@@ -103,7 +103,7 @@ public class OxygenSystem : MonoBehaviour
             GameOver = true;
             audioSource.PlayOneShot(deathSound);
             musicManager.DeathOutro();
-            fadeToBlackScript.FadeToBlackWithScene("MainMenu",1f); // CHANGE TO 'DEATH' LATER
+            fadeToBlackScript.FadeToBlackWithScene("Death",1f); // CHANGE TO 'DEATH' LATER
             stuckLocation = transform.position;
             //characterController.enabled = false;
             firstPersonController.gameOver = true;

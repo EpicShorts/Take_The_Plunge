@@ -8,28 +8,28 @@ public class onstart : MonoBehaviour
     {
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
-        Invoke("lateStart",0.1f);
-        Cursor.visible = true;
+        //Invoke("lateStart",0.1f);
+        //Cursor.visible = true;
     }
 
 
     void lateStart()
     {
-        waitover = true;
+        //waitover = true;
     }
 
     void Update()
     {
 
-        if (Cursor.lockState != CursorLockMode.Locked && Application.isFocused && waitover)
-        {
-            LockCursor();
-        }
+        //if (Cursor.lockState != CursorLockMode.Locked && Application.isFocused && waitover)
+        //{
+        //    LockCursor();
+        //}
     }
 
     void LockCursor()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 }
