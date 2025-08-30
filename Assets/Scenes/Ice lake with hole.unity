@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60be3cbbdc6da6f48a946edb2a976f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Shop_Biscuit_Balence: 0
+  Shop_Biscuit_Balence: 2000
   billboardTextMesh: {fileID: 1299894401}
   sellParticle: {fileID: 1645200183}
   audioSourceCash: {fileID: 133748323}
@@ -11395,8 +11395,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291659008
-  m_fontColor: {r: 0, g: 0.52156866, b: 0.80392164, a: 1}
+    rgba: 4294956800
+  m_fontColor: {r: 0, g: 0.84313726, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -25623,8 +25623,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291795456
-  m_fontColor: {r: 0, g: 0.6039216, b: 0.8117648, a: 1}
+    rgba: 4294956800
+  m_fontColor: {r: 0, g: 0.84313726, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -52547,8 +52547,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291258880
-  m_fontColor: {r: 0, g: 0.4156863, b: 0.7803922, a: 1}
+    rgba: 4294956800
+  m_fontColor: {r: 0, g: 0.84313726, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -80346,8 +80346,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291659008
-  m_fontColor: {r: 0, g: 0.52156866, b: 0.80392164, a: 1}
+    rgba: 4294956800
+  m_fontColor: {r: 0, g: 0.84313726, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
