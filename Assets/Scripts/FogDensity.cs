@@ -16,15 +16,16 @@ public class FogDensity : MonoBehaviour
     void Update()
     {
         // no more than 0.1
+        // 0.05
         // goes down to -300
         float fogdensityvalue = (-playerLocation.position.y * 0.0004f);
-        if (fogdensityvalue >= 0)
+        if (fogdensityvalue >= 0 && fogdensityvalue <= 0.05f)
         {
             RenderSettings.fogDensity = fogdensityvalue;
         }
-        else
+        else if (fogdensityvalue >= 0.05f)
         {
-            RenderSettings.fogDensity = 0;
+            RenderSettings.fogDensity = 0.05f;
         }
         //if (fogdensityvalue >= 0)
         //{

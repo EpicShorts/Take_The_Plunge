@@ -82687,6 +82687,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3664774403335483907, guid: d8ede8c5a7e99a54c8e8cd367a378240, type: 3}
+      propertyPath: snowFootstep_1
+      value: 
+      objectReference: {fileID: 8300000, guid: 8377090170f38f449914fbf7b68a766b, type: 3}
+    - target: {fileID: 3664774403335483907, guid: d8ede8c5a7e99a54c8e8cd367a378240, type: 3}
+      propertyPath: snowFootstep_2
+      value: 
+      objectReference: {fileID: 8300000, guid: 8377090170f38f449914fbf7b68a766b, type: 3}
+    - target: {fileID: 3664774403335483907, guid: d8ede8c5a7e99a54c8e8cd367a378240, type: 3}
       propertyPath: playerInputHandler
       value: 
       objectReference: {fileID: 1019567050}
@@ -82925,6 +82933,10 @@ PrefabInstance:
     - target: {fileID: 7649635093138254045, guid: d8ede8c5a7e99a54c8e8cd367a378240, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848917257818536291, guid: d8ede8c5a7e99a54c8e8cd367a378240, type: 3}
+      propertyPath: m_Volume
+      value: 0.716
       objectReference: {fileID: 0}
     - target: {fileID: 8153779109478107400, guid: d8ede8c5a7e99a54c8e8cd367a378240, type: 3}
       propertyPath: m_CastShadows
