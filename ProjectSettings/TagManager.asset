@@ -10,6 +10,7 @@ TagManager:
   - BasicFins
   - BasicWeights
   - BasicOxygenTank
+  - BasicDingy
   layers:
   - Default
   - TransparentFX

@@ -23,6 +23,7 @@ public class FirstPersonController : MonoBehaviour
     [Header("Game Parameters")]
     [SerializeField] private float diveForce = 0.05f;
     [SerializeField] public float diveSpeed = 5f;
+    public float floatSpeedIncrease = 0f;
     [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float surfaceSpeedMultiplyer = 1f;
     [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float underWaterSpeedMultiplyer = 1f;
     [Tooltip("0 is no movement, 1 is normal")] [SerializeField] public float diveSpeedMultiplyer = 1f;
@@ -98,7 +99,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 currentMovement.y += -diveForce * diveSpeedMultiplyer * Time.deltaTime * 140f;
             }
-            if (currentMovement.y < (10f))
+            if (currentMovement.y < (10f+ floatSpeedIncrease))
             // ((10f*(diveSpeed/10)))+5f)
             // change above to go up faster... upgrade?
             {

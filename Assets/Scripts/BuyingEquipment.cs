@@ -13,17 +13,24 @@ public class BuyingEquipment : MonoBehaviour
     [SerializeField] private ParticleSystem oyxgenTankParticleSystem;
     [SerializeField] private ParticleSystem flipperParticleSystem;
     [SerializeField] private ParticleSystem weightsParticleSystem;
+    [SerializeField] private ParticleSystem dingyParticleSystem;
     [Header("Text for signs")]
     [SerializeField] private TextMeshProUGUI oxygenSignText;
     [SerializeField] private TextMeshProUGUI fliipersSignText;
     [SerializeField] private TextMeshProUGUI wieghtsSignText;
+    [SerializeField] private TextMeshProUGUI dingySignText;
 
     [Header("Objects on table")]
     public List<GameObject> oxygenTanksVisible = new List<GameObject>();
     public List<GameObject> flippersVisible = new List<GameObject>();
     public List<GameObject> weightsVisible = new List<GameObject>();
+    public List<GameObject> dingyVisible = new List<GameObject>();
 
-
+    [Header("Stats Text")]
+    [SerializeField] private TextMeshProUGUI oxygenStats; // SEcondS o2:  
+    [SerializeField] private TextMeshProUGUI fliipersStats; // SIdE SPEEd: 
+    [SerializeField] private TextMeshProUGUI wieghtsStats; // doWn SPEEd: 
+    [SerializeField] private TextMeshProUGUI dingyStats; // Up SPEEd:
 
 
     [Header("Sounds")]
@@ -37,16 +44,19 @@ public class BuyingEquipment : MonoBehaviour
     [SerializeField] private ShopKeeper shopKeeperScript;
 
     private float oxygenPrice = 20;
-    private float flippersPrice = 15;
-    private float weightPrice = 10;
+    private float flippersPrice = 16;
+    private float weightPrice = 11;
+    private float dingyPrice = 23;
 
     private int oxygenTankCount;
     private int flippersCount;
     private int weightsCount;
+    private int dingyCount;
 
     private int oxygenTankSold = 0;
     private int flippersSold = 0;
     private int weightsSold = 0;
+    private int dingySold = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +67,9 @@ public class BuyingEquipment : MonoBehaviour
         oxygenTankCount = oxygenTanksVisible.Count;
         flippersCount = flippersVisible.Count;
         weightsCount = weightsVisible.Count;
+        dingyCount = dingyVisible.Count;
+
+        updateStats();
     }
 
     // Update is called once per frame
@@ -90,9 +103,10 @@ public class BuyingEquipment : MonoBehaviour
                     }
                     else if (flippersSold == flippersCount)
                     {
-                        fliipersSignText.text = "X";
+                        fliipersSignText.text = "Sold\nout";
                         other.gameObject.SetActive(false);
                     }
+                    updateStats();
                     //oxygenTanksVisible[oxygenTankSold].SetActive(false);
                 }
                 else
@@ -124,9 +138,10 @@ public class BuyingEquipment : MonoBehaviour
                     }
                     else if (weightsSold == weightsCount)
                     {
-                        wieghtsSignText.text = "X";
+                        wieghtsSignText.text = "Sold\nout";
                         other.gameObject.SetActive(false);
                     }
+                    updateStats();
                 }
                 else
                 {
@@ -159,9 +174,43 @@ public class BuyingEquipment : MonoBehaviour
                     }
                     else if (oxygenTankSold == oxygenTankCount)
                     {
-                        oxygenSignText.text = "X";
+                        oxygenSignText.text = "Sold\nout";
                         other.gameObject.SetActive(false);
                     }
+                    updateStats();
+                }
+                else
+                {
+                    shopKeeperScript.shopKeeperSad();
+                }
+                break;
+
+
+
+            case "BasicDingy":
+                if (shopSell.RemoveFromBalence((int)dingyPrice))
+                {
+                    IncreaseFloatSpeed(2f);
+                    other.gameObject.SetActive(false);
+                    dingyParticleSystem.Play();
+                    playerAudioSource.PlayOneShot(boughtSoundEffect);
+                    dingyPrice = dingyPrice * 2.1f;
+                    StartCoroutine(happySellMethod());
+
+
+                    if (dingySold < dingyCount)
+                    {
+                        StartCoroutine(RespawnObject(other.gameObject));
+                        dingySignText.text = "$" + ((int)dingyPrice).ToString();
+                        dingyVisible[dingySold].SetActive(false);
+                        dingySold++;
+                    }
+                    else if (dingySold == dingyCount)
+                    {
+                        dingySignText.text = "Sold\nout";
+                        other.gameObject.SetActive(false);
+                    }
+                    updateStats();
                 }
                 else
                 {
@@ -190,6 +239,16 @@ public class BuyingEquipment : MonoBehaviour
         oxygenSignText.text = "$"+((int)oxygenPrice).ToString();
         fliipersSignText.text = "$"+((int)flippersPrice).ToString();
         wieghtsSignText.text = "$"+((int)weightPrice).ToString();
+        dingySignText.text = "$" + ((int)dingyPrice).ToString();
+    }
+
+    private void updateStats()
+    {
+        oxygenStats.text = "SEcondS o2: "+((int)(oxygenSystem.OxygenMax/10f)); // SEcondS o2:  
+        fliipersStats.text = "SIdE SPEEd: "+firstPersonController.underWaterSpeedMultiplyer; // SIdE SPEEd: 
+        wieghtsStats.text = "doWn SPEEd: "+firstPersonController.diveSpeed; // doWn SPEEd: 
+        dingyStats.text = "Up SPEEd: "+(firstPersonController.floatSpeedIncrease+10f); // Up SPEEd:
+        Debug.Log("firstPersonController.diveSpeed: " + firstPersonController.diveSpeed);
     }
 
     private void IncreaseSwimSpeed(float swimSpeed)
@@ -202,6 +261,12 @@ public class BuyingEquipment : MonoBehaviour
     {
         firstPersonController.diveSpeed += diveSpeed;
         Debug.Log("[BuyingEquipment] Dive Speed Increased");
+    }
+
+    private void IncreaseFloatSpeed(float floatSpeed)
+    {
+        firstPersonController.floatSpeedIncrease += floatSpeed;
+        Debug.Log("[BuyingEquipment] float speed increased");
     }
 
     private void IncreaseMaxOxygenLevel(int level)
