@@ -5,6 +5,15 @@ Sell your objects in the shop to get better gear
 And never go too deep...
 
 ## Dev Diary (Newest to Oldest)
+### 30/08/2025
+THE GAME IS SUBMITTED
+yeah today was filled with constant bug fixing and tweaking
+but we made it.
+go play it at: 
+https://epicshortsboy.itch.io/take-the-plunge-brackeys-game-jam-submission
+<img width="1625" height="860" alt="image" src="https://github.com/user-attachments/assets/4af3574b-2ccc-4c12-9490-3163bb6ad872" />
+
+
 ### 29/08/2025
 A development version has been uploaded to Itch.io for player testing.  
 Additions:
