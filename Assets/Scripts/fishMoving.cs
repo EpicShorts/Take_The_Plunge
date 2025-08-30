@@ -5,7 +5,7 @@ public class fishMoving : MonoBehaviour
     [SerializeField] private PickupableObject fishHost;
     public bool ifCaught = false;
     private float rotationCurrent = 0;
-    private bool gravityChanged = false;
+    //private bool gravityChanged = false;
     [SerializeField] private Rigidbody rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

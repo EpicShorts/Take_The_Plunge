@@ -34,6 +34,6 @@ public class gameFinish : MonoBehaviour
         //fadeToBlackScript.FadeToBlackWithScene("Ending",3f);
         yield return new WaitForSeconds(2f);
         //firstPersonController.gameOver = true;
-        Debug.Log("Game done, well done");
+        //Debug.Log("Game done, well done");
     }
 }

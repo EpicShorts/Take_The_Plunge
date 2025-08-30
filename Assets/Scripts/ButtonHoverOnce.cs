@@ -29,7 +29,7 @@ public class ButtonHoverEvents : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void OnHoverStart()
     {
-        Debug.Log("Hover started!");
+        //Debug.Log("Hover started!");
         arrowMeshes.SetActive(true);
         audioSource.PlayOneShot(MenuInHoverMusic);
         // Your logic for when hovering begins
@@ -37,7 +37,7 @@ public class ButtonHoverEvents : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void OnHoverEnd()
     {
-        Debug.Log("Hover ended!");
+        //Debug.Log("Hover ended!");
         arrowMeshes.SetActive(false);
         audioSource.PlayOneShot(MenuOutHoverMusic);
         // Your logic for when hovering stops

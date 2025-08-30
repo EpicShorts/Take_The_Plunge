@@ -104,7 +104,7 @@ public class FirstPersonController : MonoBehaviour
         if (transform.position.y < 0f)
         {
             //if (feetBoxCollider)
-            Debug.DrawRay(headTransform.position, Vector3.up * 0.2f, Color.red);
+            //Debug.DrawRay(headTransform.position, Vector3.up * 0.2f, Color.red);
             if (Physics.Raycast(headTransform.position, Vector3.up, out hit, 0.2f, collisionMask))
             {
                 //Debug.Log("[FPC] SomethingAbove");
@@ -115,7 +115,7 @@ public class FirstPersonController : MonoBehaviour
                 }
                 //currentMovement.y = 0f;
             }
-            Debug.DrawRay(feetTransform.position, Vector3.down * 0.2f, Color.red);
+            //Debug.DrawRay(feetTransform.position, Vector3.down * 0.2f, Color.red);
             if (Physics.Raycast(feetTransform.position, Vector3.down, out hit, 0.2f, collisionMask))
             {
                 //Debug.Log("[FPC] SomethingAbove");

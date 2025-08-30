@@ -43,7 +43,7 @@ public class fadeToBlack : MonoBehaviour
         }
         fadeImage.color = endColor;
         SceneManager.LoadScene(sceneName);
-        Debug.Log("Loaded Scene");
+        //Debug.Log("Loaded Scene");
     }
 
     private IEnumerator FadeIn(float durationOfFade)

@@ -218,7 +218,7 @@ public class BuyingEquipment : MonoBehaviour
                 }
                 break;
             default:
-                Debug.Log("Unknown ShopBuy tag");
+                //Debug.Log("Unknown ShopBuy tag");
                 break;
         }
     }
@@ -248,30 +248,30 @@ public class BuyingEquipment : MonoBehaviour
         fliipersStats.text = "SIdE SPEEd: "+firstPersonController.underWaterSpeedMultiplyer; // SIdE SPEEd: 
         wieghtsStats.text = "doWn SPEEd: "+firstPersonController.diveSpeed; // doWn SPEEd: 
         dingyStats.text = "Up SPEEd: "+(firstPersonController.floatSpeedIncrease+10f); // Up SPEEd:
-        Debug.Log("firstPersonController.diveSpeed: " + firstPersonController.diveSpeed);
+        //Debug.Log("firstPersonController.diveSpeed: " + firstPersonController.diveSpeed);
     }
 
     private void IncreaseSwimSpeed(float swimSpeed)
     {
         firstPersonController.underWaterSpeedMultiplyer += swimSpeed;
-        Debug.Log("[BuyingEquipment] Swim Speed Increased");
+        //Debug.Log("[BuyingEquipment] Swim Speed Increased");
     }
 
     private void IncreaseDiveSpeed(float diveSpeed)
     {
         firstPersonController.diveSpeed += diveSpeed;
-        Debug.Log("[BuyingEquipment] Dive Speed Increased");
+        //Debug.Log("[BuyingEquipment] Dive Speed Increased");
     }
 
     private void IncreaseFloatSpeed(float floatSpeed)
     {
         firstPersonController.floatSpeedIncrease += floatSpeed;
-        Debug.Log("[BuyingEquipment] float speed increased");
+        //Debug.Log("[BuyingEquipment] float speed increased");
     }
 
     private void IncreaseMaxOxygenLevel(int level)
     {
         oxygenSystem.OxygenMax += level;
-        Debug.Log("[BuyingEquipment] Oxygen Max Increased");
+        //Debug.Log("[BuyingEquipment] Oxygen Max Increased");
     }
 }

@@ -16,7 +16,7 @@ public class PickupableObject : MonoBehaviour
 
 
     [Header("Game Variables")]
-    [Tooltip("The higher then the object feels heavier")] [SerializeField] private float heavyFeeling = 0.5f;
+    //[Tooltip("The higher then the object feels heavier")] [SerializeField] private float heavyFeeling = 0.5f;
     [SerializeField] private float throwForce = 10f;
     [SerializeField] private int valueWorth = 10;
 
