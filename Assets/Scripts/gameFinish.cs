@@ -9,6 +9,8 @@ public class gameFinish : MonoBehaviour
 
     [SerializeField] private FirstPersonController firstPersonController;
 
+    [SerializeField] private GameObject danceparty;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,8 +29,9 @@ public class gameFinish : MonoBehaviour
 
     IEnumerator gameFinishWait()
     {
+        danceparty.SetActive(true);
         //firstPersonController.gameOver = true;
-        fadeToBlackScript.FadeToBlackWithScene("Ending",3f);
+        //fadeToBlackScript.FadeToBlackWithScene("Ending",3f);
         yield return new WaitForSeconds(2f);
         //firstPersonController.gameOver = true;
         Debug.Log("Game done, well done");
